@@ -23,7 +23,7 @@ delta <- function(x){
   return(temp)
 }
 
-covidIL <- read.csv("./Data/ILCovid19.csv")
+covidIL <- read.csv("./ILCovid19.csv")
 head(covidIL)
 covidIL <- covidIL %>%
   mutate(pc_test=delta(Tests),
