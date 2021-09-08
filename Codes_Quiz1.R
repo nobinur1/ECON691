@@ -1,11 +1,11 @@
 #First script to manipulate data
 #Economics 691
-#Nomun Bukh
-#08/30/2021
+#Mohammad Nur Nobi
+#09/05/2021
 
 #
 
-x<-"Hello, my name is Nomun"
+x<-"Hello, my name is Mohammad Nur Nobi"
 x
 
 y<- -3
@@ -47,7 +47,7 @@ covidIL$pc_deaths[is.nan(covidIL$pc_deaths)] <- NA #converted NaN to NA
 covidIL$Date1 = as.Date(covidIL$Date, "%m/%d/%Y") #created new column because it keeps saying <NA> when I try to overwrite Date column
 plot(covidIL$Date1, covidIL$pc_deaths)
 plot(covidIL$Date1, covidIL$pc_cases,
-     main="Percentage change of COVID cases",
+     main="% change of COVID cases",
      xlab="Date",
      ylab="",
      type="l",
@@ -58,8 +58,8 @@ plot(covidIL$Date1, covidIL$pc_cases,
 
 head(covidIL)
 
-#Homework assignment
-#creating function DIF
+#Assignment 1 
+#function for DIF
 
 DIF <- function(x){
   temp<-(x-lag(x))
@@ -79,19 +79,19 @@ covidIL$pc_dif_deaths[is.nan(covidIL$pc_dif_deaths)] <- NA #converted NaN to NA
 head(covidIL)
 
 plot(covidIL$Date1,covidIL$pc_dif_cases,
-     main="Percentage change of COVID number of daily cases",
+     main="% change of daily cases of COVID",
      xlab="Date",
      ylab="",
      type="l",
      col="blue")
 plot(covidIL$Date1,covidIL$pc_dif_test,
-     main="Percentage change of COVID number of daily tests",
+     main="% change of daily number of tests of COVID",
      xlab="Date",
      ylab="",
      type="l",
      col="blue")
 plot(covidIL$Date1,covidIL$pc_dif_deaths,
-     main="Percentage change of COVID number of daily deaths",
+     main="% change of number of daily deaths of COVID",
      xlab="Date",
      ylab="",
      type="l",
