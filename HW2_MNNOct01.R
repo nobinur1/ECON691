@@ -1,6 +1,6 @@
-#Mohammad Nur Nobi, HW2
-#ECON691
+#Mohammad Nur Nobi, HW2: ECON691
 ## Calling required libraries 
+# Date updated September 30, 2021
 library(rvest)
 library(tidyverse)
 
@@ -41,9 +41,11 @@ df_WV <- data.frame(append(`west-virginia` , c(state='WEST-VIRGINIA'), after=1))
 
 df_list <- list(df_IN,df_KY,df_OH,df_PY,df_WV)
 VOTES <- Reduce(function(x, y) merge(x, y, all=TRUE), df_list, accumulate=FALSE)
-save(VOTES, file = "C:/Users/user/Documents/Github/econ691mnn/Build/Output/vOTES.RData")
+save(list = "VOTES", file = "C:/Users/user/Documents/Github/econ691mnn/Build/Output/VOTES.RData")
+
+
 # Alternatively: this will produce a single dataframe state by state
-VOTES1 <- do.call("rbind", list(df_IN,df_KY,df_OH,df_PY,df_WV))
+#VOTES1 <- do.call("rbind", list(df_IN,df_KY,df_OH,df_PY,df_WV))
 
 
 ### Part 02 of HW2
@@ -463,8 +465,38 @@ WV2019_PCT$name <- WV2019.acs$NAME
 CENSUS.1 <- do.call("rbind", list(IN2016_PCT, OH2016_PCT, KN2016_PCT, PA2016_PCT, WV2016_PCT))
 save(list = "CENSUS.1", file = "C:/Users/user/Documents/Github/econ691mnn/Build/Output/CENSUS.1.RData")
 
+
 CENSUS.2 <- do.call("rbind", list(IN2019_PCT, OH2019_PCT, KN2019_PCT, PA2019_PCT, WV2019_PCT))
 save(list = "CENSUS.2", file = "C:/Users/user/Documents/Github/econ691mnn/Build/Output/CENSUS.2.RData")
+
+
+gamma <- function(x,y){
+  temp<-(x-y)/(y)
+  return(temp)
+}
+
+
+CENSUS.3 <- CENSUS.1 %>%
+  mutate(PC_perMale=gamma(CENSUS.1$perMale,CENSUS.2$perMale),
+         PC_perWhite=gamma(CENSUS.1$perWhite,CENSUS.2$perWhite),
+         PC_perBlack=gamma(CENSUS.1$perBlack,CENSUS.2$perBlack),
+         PC_perCit=gamma(CENSUS.1$perCit,CENSUS.2$perCit),
+         PC_perStay=gamma(CENSUS.1$perStay,CENSUS.2$perStay),
+         PC_perSameCounty=gamma(CENSUS.1$perSameCounty,CENSUS.2$perSameCounty),
+         PC_perSameSt=gamma(CENSUS.1$perSameSt,CENSUS.2$perSameSt),
+         PC_perOthState=gamma(CENSUS.1$perOthState,CENSUS.2$perOthState),
+         PC_perAbroad=gamma(CENSUS.1$perAbroad,CENSUS.2$perAbroad)) %>%
+  select("GEOID",starts_with("PC"),"County","state","geometry")
+
+
+#write.csv(CENSUS.3,'CENSUS3.csv')
+
+#CENSUS.3 <- do.call("rbind", list(PC_perMale, PC_perWhite, PC_perBlack, PC_perCit, PC_perStay, PC_perSameCounty, PC_perSameSt, PC_perOthState, PC_perAbroad))
+#write.csv(CENSUS.3,'CENSUS3.csv')
+#save(list = "CENSUS.3", file = "C:/Users/user/Documents/Github/econ691mnn/Build/Output/CENSUS.3.RData")
+
+
+
 
 ## part 03
 
@@ -595,5 +627,6 @@ White (WV)"))+
 
 plot_grid(p1_WV,p2_WV)
 
-
+window()
 plot_grid(p1_IN,p2_IN,p1_OH,p2_OH,p1_KY,p2_KY,p1_PA,p2_PA,p1_WV,p2_WV, nrow = 3)
+
