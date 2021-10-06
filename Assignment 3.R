@@ -186,6 +186,7 @@ D_VOTES <- votes_20_16 %>%
   select("state...2","county_name...3","D_DEM","D_REP")%>%
   rename("state" = "state...2","county_name"="county_name...3")
 
+save(list = "D_VOTES", file = "C:/Users/user/Documents/Github/econ691mnn/Build/Code/ECON691mnn/D_Votes.RData")
 
 
 #PART 2
@@ -583,6 +584,12 @@ Vote Change (WV-REP)"))+
 
 plot_grid(WV_dem,WV_rep)
 
+V_DEM <- plot_grid(IN_dem,OH_dem,KY_dem,PA_dem,WV_dem,nrow=5)
+
+V_REP <- plot_grid(IN_rep,OH_rep,KY_rep,PA_rep,WV_rep,nrow=5)
+
+windows()
+plot_grid(V_DEM, V_REP,ncol = 2)
 
 
 ### Part 03 (Regression models and combined results for Beamer presentation as
@@ -601,7 +608,7 @@ summary(mod4)
 require(stargazer)
 stargazer(mod1,mod2,mod3,mod4, type = "html",out="C:/Users/user/Documents/Github/econ691mnn/Build/Code/ECON691mnn/finalreg_1.html")
 
-                                               \ECON691mnn
+                                               
 ###adding state level fixed effects
 
 mod5<-lm(D_DEM~perMale+perWhite+factor(state.x), data=merged)
