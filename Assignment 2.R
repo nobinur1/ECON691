@@ -532,7 +532,7 @@ Indianacensus$County<-trimws(gsub(" County, Indiana","",Indianacensus$NAME))
 Kentuckycensus$County<-trimws(gsub(" County, Kentucky","",Kentuckycensus$NAME))
 Ohiocensus$County<-trimws(gsub(" County, Ohio","",Ohiocensus$NAME))
 Pennsylvaniacensus$County<-trimws(gsub(" County, Pennsylvania","",Pennsylvaniacensus$NAME))
-`West Virginiacensus`$County<-trimws(gsub(" County, Utah","",`West Virginiacensus`$NAME))
+`West Virginiacensus`$County<-trimws(gsub(" County, West Virginia","",`West Virginiacensus`$NAME))
 
 CENSUS.1 <- rbind(Indianacensus,Kentuckycensus,Ohiocensus,Pennsylvaniacensus,`West Virginiacensus`)
 
@@ -588,7 +588,7 @@ Indianacensus$County<-trimws(gsub(" County, Indiana","",Indianacensus$NAME))
 Kentuckycensus$County<-trimws(gsub(" County, Kentucky","",Kentuckycensus$NAME))
 Ohiocensus$County<-trimws(gsub(" County, Ohio","",Ohiocensus$NAME))
 Pennsylvaniacensus$County<-trimws(gsub(" County, Pennsylvania","",Pennsylvaniacensus$NAME))
-`West Virginiacensus`$County<-trimws(gsub(" County, Utah","",`West Virginiacensus`$NAME))
+`West Virginiacensus`$County<-trimws(gsub(" County, West Virginia","",`West Virginiacensus`$NAME))
 
 CENSUS.2 <- rbind(Indianacensus,Kentuckycensus,Ohiocensus,Pennsylvaniacensus,`West Virginiacensus`)
 
